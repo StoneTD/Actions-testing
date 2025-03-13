@@ -25,6 +25,7 @@ jobs:
           git config user.name StoneTD
           git config user.email dylanstone0147@gmail.com
           git add .
-          git commit -m "Modified Feed via GitHub Action"
+          git diff --exit-code || echo "Changes detected"
+          git commit -m "Modified Feed via GitHub Action" || echo "No changes to commit"
           git push https://x-access-token:${{ secrets.ACCESS_TOKEN }}@github.com/StoneTD/Actions-testing.git HEAD:main
         

@@ -7,25 +7,5 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3  # An action in the marketplace called Checkout, using version 3
         
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-          
-      - name: Install Dependencies
-        run:  |  # New machine might not have python and pip pre-installed
-          python -m pip install --upgrade pip
-          pip install pyyaml
-          
       - name: Run Feed Generator
-        run: python feed.py
-        
-      - name: Push Repo
-        run: | # The new machine doesn't have Git set up yet
-          git config user.name StoneTD
-          git config user.email dylanstone0147@gmail.com
-          git add .
-          git diff --exit-code || echo "Changes detected"
-          git commit -m "Modified Feed via GitHub Action" || echo "No changes to commit"
-          git push 
-        
+        uses: StoneTD/generation-testing@main  # A custom made action in my repository, using main branch
